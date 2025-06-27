@@ -1,0 +1,84 @@
+import os
+from pathlib import Path
+from langchain_community.document_loaders import PyPDFLoader, TextLoader, UnstructuredHTMLLoader
+from langchain_community.vectorstores import FAISS
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.chains import RetrievalQA
+from langchain_openai import AzureOpenAIEmbeddings, AzureChatOpenAI
+
+
+# Set Azure OpenAI credentials
+AZURE_ENDPOINT = "https://****.openai.azure.com/"
+AZURE_API_KEY = "***************"
+AZURE_API_VERSION = "***"
+EMBEDDING_DEPLOYMENT = "text-embedding-ada-002"
+
+
+# Load and split documents
+### Comment this section if not needed multiple files ###
+
+# Define the folder path
+doc_folder = Path("docs\")
+
+# Initialize a list to hold all documents
+all_docs = []
+
+# Loop through all files in the folder
+for file_path in doc_folder.glob("*"):
+    if file_path.suffix == ".pdf":
+          loader = PyPDFLoader(str(file_path))
+    elif file_path.suffix == ".txt":
+          loader = TextLoader(str(file_path), encoding="utf-8")
+    elif file_path.suffix == ".html":
+          loader = UnstructuredHTMLLoader(str(file_path))
+    else:
+          continue    # Skip unsupported files
+    docs = loader.load()
+    all_docs.extend(docs)
+
+###  Single File ### 
+#loader = TextLoader(r"docs\RELEASE.TXT")
+
+# Split the documents into chunks 
+# # Now `split_docs` is ready for Azure OpenAI ingestion
+splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+chunks = splitter.split_documents(all_docs)
+
+
+# Create Embeddings and vector store
+embeddings = AzureOpenAIEmbeddings(
+    azure_endpoint=AZURE_ENDPOINT,
+    api_key=AZURE_API_KEY,
+    api_version=AZURE_API_VERSION,
+    deployment=EMBEDDING_DEPLOYMENT
+)
+
+vectorstore = FAISS.from_documents(chunks, embeddings)
+retriever = vectorstore.as_retriever()
+
+
+# Initialize Azure OpenAI LLM
+llm = AzureChatOpenAI(
+    azure_endpoint=AZURE_ENDPOINT,
+    api_key=AZURE_API_KEY,
+    api_version="2024-12-01-preview",
+    deployment_name="gpt-35-turbo",
+    temperature=0.2
+)
+
+# Set up the Retrieval-QA chain
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=retriever,
+    return_source_documents=False
+)
+
+# Ask for test cases
+query = "suggest 3 test scenarios for PKI CM testing scenarios"
+
+#response = qa_chain.invoke({"query": query})
+response = qa_chain.invoke(query)
+
+# Output the results
+print("\nAI-Generated Manual Test Cases:\n")
+print(response)
