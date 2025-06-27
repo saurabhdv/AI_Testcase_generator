@@ -1,0 +1,180 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Chapter&nbsp;6.&nbsp;CA Tasks</title><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"><link rel="home" href="ca-admin-guide.html" title="CA Administrator's Guide"><link rel="up" href="ca-admin-guide.html" title="CA Administrator's Guide"><link rel="prev" href="h1_authority_types.html" title="Chapter&nbsp;5.&nbsp;Authority Types"><link rel="next" href="h2_modifying_a_ca.html" title="6.2.&nbsp;Modifying a CA"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter&nbsp;6.&nbsp;CA Tasks</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="h1_authority_types.html">Prev</a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="h2_modifying_a_ca.html">Next</a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="h1_ca_tasks"></a>Chapter&nbsp;6.&nbsp;CA Tasks</h1></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl class="toc"><dt><span class="section"><a href="h1_ca_tasks.html#h2_creating_a_new_ca">6.1. Creating a New CA</a></span></dt><dd><dl><dt><span class="section"><a href="h1_ca_tasks.html#h3_ca_prerequisites_3">6.1.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h1_ca_tasks.html#h3_options_3">6.1.2. Options</a></span></dt><dt><span class="section"><a href="h1_ca_tasks.html#h3_procedure_3">6.1.3. Procedure</a></span></dt></dl></dd><dt><span class="section"><a href="h2_modifying_a_ca.html">6.2. Modifying a CA</a></span></dt><dd><dl><dt><span class="section"><a href="h2_modifying_a_ca.html#h3_prerequisites_4">6.2.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h2_modifying_a_ca.html#h3_options_4">6.2.2. Options</a></span></dt><dt><span class="section"><a href="h2_modifying_a_ca.html#h3_procedure_4">6.2.3. Procedure</a></span></dt></dl></dd><dt><span class="section"><a href="h2_publishing_a_ca.html">6.3. Publishing a CA</a></span></dt><dd><dl><dt><span class="section"><a href="h2_publishing_a_ca.html#h3_prerequisites_5">6.3.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h2_publishing_a_ca.html#h3_options_5">6.3.2. Options</a></span></dt><dt><span class="section"><a href="h2_publishing_a_ca.html#h3_procedure_5">6.3.3. Procedure</a></span></dt></dl></dd><dt><span class="section"><a href="h2_revoking_a_ca.html">6.4. Revoking a CA</a></span></dt><dd><dl><dt><span class="section"><a href="h2_revoking_a_ca.html#h3_prerequisites_6">6.4.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h2_revoking_a_ca.html#h3_options_6">6.4.2. Options</a></span></dt><dt><span class="section"><a href="h2_revoking_a_ca.html#h3_procedure_6">6.4.3. Procedure</a></span></dt></dl></dd><dt><span class="section"><a href="h2_issuing_a_request_for_a_cross_certificate.html">6.5. Issuing a Request for a Cross Certificate</a></span></dt><dd><dl><dt><span class="section"><a href="h2_issuing_a_request_for_a_cross_certificate.html#h3_prerequisites_7">6.5.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h2_issuing_a_request_for_a_cross_certificate.html#h3_options_7">6.5.2. Options</a></span></dt><dt><span class="section"><a href="h2_issuing_a_request_for_a_cross_certificate.html#h3_procedure_7">6.5.3. Procedure</a></span></dt></dl></dd><dt><span class="section"><a href="h2_processing_a_request_for_a_cross_certificate.html">6.6. 
+	Processing a Request for a Cross Certificate
+</a></span></dt><dd><dl><dt><span class="section"><a href="h2_processing_a_request_for_a_cross_certificate.html#h3_prerequisites_8">6.6.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h2_processing_a_request_for_a_cross_certificate.html#h3_options_8">6.6.2. Options</a></span></dt><dt><span class="section"><a href="h2_processing_a_request_for_a_cross_certificate.html#h3_procedure_8">6.6.3. Procedure</a></span></dt></dl></dd><dt><span class="section"><a href="h2_importing_external_ca_certificates.html">6.7. Importing External CA Certificates</a></span></dt><dd><dl><dt><span class="section"><a href="h2_importing_external_ca_certificates.html#h3_prerequisites_9">6.7.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h2_importing_external_ca_certificates.html#h3_options_9">6.7.2. Options</a></span></dt><dt><span class="section"><a href="h2_importing_external_ca_certificates.html#h3_procedure_9">6.7.3. Procedure</a></span></dt></dl></dd><dt><span class="section"><a href="h2_deleting_an_external_ca.html">6.8. Deleting an External CA</a></span></dt><dd><dl><dt><span class="section"><a href="h2_deleting_an_external_ca.html#h3_prerequisites_10">6.8.1. Prerequisites</a></span></dt><dt><span class="section"><a href="h2_deleting_an_external_ca.html#h3_options_10">6.8.2. Options</a></span></dt><dt><span class="section"><a href="h2_deleting_an_external_ca.html#h3_procedure_10">6.8.3. Procedure</a></span></dt></dl></dd></dl></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="h2_creating_a_new_ca"></a>6.1.&nbsp;Creating a New CA</h2></div></div></div><p>
+	This task is used to create a new self-signed or secondary CA.
+</p><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="h3_ca_prerequisites_3"></a>6.1.1.&nbsp;Prerequisites</h3></div></div></div><p>
+	The following task requires MSO signatures to be completed. Both officers must
+	have the following roles:
+ </p><div class="itemizedlist"><ul class="itemizedlist compact" style="list-style-type: disc; "><li class="listitem"><em class="guilabel">Use AWB</em></li><li class="listitem"><em class="guilabel">CA and Key tasks</em></li></ul></div><p>
+	A connection to the CM host must have been established (refer to
+	<a class="xref" href="h2_cm_host_connections.html" title="3.2.&nbsp;CM Host Connections">Section&nbsp;3.2, &#8220;CM Host Connections&#8221;</a>).
+ </p><p>
+	The following information is required by the CMO during the task:
+ </p><div class="itemizedlist"><ul class="itemizedlist compact" style="list-style-type: disc; "><li class="listitem"><p>
+	The CA name that will appear in the <em class="guilabel">Authority Hierarchy</em> in the
+	explorer bar
+   </p></li><li class="listitem"><p>
+	The name of the issuing CA when creating subordinate CAs.
+   </p></li><li class="listitem"><p>
+	CA key to be used for the certificate (refer to
+	<a class="xref" href="h1_ca_key_tasks.html#h2_creating_a_new_ca_key" title="7.1.&nbsp;Creating a New CA Key">Section&nbsp;7.1, &#8220;Creating a New CA Key&#8221;</a>).
+   </p></li><li class="listitem"><p>The signature algorithm</p></li><li class="listitem"><p>The distribution rules applicable.</p></li><li class="listitem"><p>The certificate format applicable.</p></li></ul></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+	It is recommended that formats, which are not available, be generated before
+	performing this task.
+ </div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="h3_options_3"></a>6.1.2.&nbsp;Options</h3></div></div></div><p>
+	Clicking the <em class="guibutton">Save</em> button at any time during the creation
+	of the Authority, prior to clicking the <em class="guibutton">OK</em> button, will save the
+	data and place the incomplete Authority request in the
+	<em class="guilabel">Authority Hierarchy</em>. Authority creation can be completed at a later stage
+	by highlighting the unsigned Authority in the explorer bar and selecting the
+	<em class="guimenuitem">Modify</em> option from the
+	<em class="guimenu">Edit</em> menu, the toolbar, or the right-click shortcut menu.
+ </p><p>
+	The certificate attributes displayed in the
+	<em class="guilabel">Create Authority Request</em> dialog can be customized. This is
+	detailed in <a class="xref" href="h1_ca_tasks.html#h4_customizing_the_attribute_display" title="6.1.3.1.&nbsp;Customizing the Attribute Display">Section&nbsp;6.1.3.1, &#8220;Customizing the Attribute Display&#8221;</a> at the end of
+	the procedure.
+ </p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+	It is possible to define delayed publishing when a new Authority is created if steps
+	<a class="xref" href="h1_ca_tasks.html#li_click_on_the_2">15</a> and <a class="xref" href="h1_ca_tasks.html#li_select_the_required_distribution_rule_for_the_ca_certificate">16</a> 
+	in the following procedure are bypassed.
+ </div></div><div class="section"><div class="titlepage"><div><div><h3 class="title"><a name="h3_procedure_3"></a>6.1.3.&nbsp;Procedure</h3></div></div></div><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+	In the AWB window, select <em class="guimenuitem">Authority</em> from the
+	<em class="guimenu">New</em> menu. The <em class="guilabel">Create Authority Request</em> dialog
+	appears.
+   </p></li></ol></div><div class="mediaobject" align="center"><img src="images/CreateCA.png" align="middle"></div><div class="orderedlist"><ol class="orderedlist" start="2" type="1"><li class="listitem"><p>
+	Enter the CA name that should appear in the
+	<em class="guilabel">Authority Hierarchy</em> in the explorer bar. This field is mandatory.
+   </p></li><li class="listitem"><p>
+	Set the CA <em class="guilabel">State</em> to <em class="guibutton">Active</em> or
+	<em class="guibutton">Closed</em> as required.
+   </p></li><li class="listitem"><p>
+	Select <em class="guilabel">Domain</em> and <em class="guilabel">Visible in subdomain</em> 
+	if applicable.
+   </p></li><li class="listitem"><p>
+		 Select the Authority type CA.
+	 </p></li><li class="listitem"><p>Modify the CA <em class="guilabel">Valid from</em> and
+	<em class="guilabel">Expiration date</em> fields by highlighting in turn the days,
+	hours, and minutes, and adjusting the amounts using the up and down arrows. The
+	individual units of date and time may also be entered manually.
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+	If the CA is to be a subordinate CA, issued with a standard format definition,
+	the expiration date will be truncated to the expiration date of the issuing CA
+	if necessary.
+	</div></li><li class="listitem"><p>
+	If the CA is to be a self-signed CA leave the
+	<em class="guilabel">Issuing CA</em> - <em class="guilabel">Self signed</em> box checked
+	(default) and go to step <a class="xref" href="h1_ca_tasks.html#li_select_the_ca_usage_by_checking_the">10</a>.
+   </p></li><li class="listitem"><p>If the CA is to be a subordinate CA uncheck the
+	<em class="guilabel">Issuing CA</em> - <em class="guilabel">Self signed</em> box. The
+	<em class="guilabel">Issuing CA</em> field is enabled. This field is now mandatory.
+	Click on the browse button
+	<img src="images/BrowseButton.bmp" align="middle"> to open the <em class="guilabel">Select Authority</em> window.
+   </p></li><li class="listitem"><p>
+	Click on the required CA to highlight it and click
+	<em class="guibutton">OK</em>. The selected CA appears in the
+	<em class="guilabel">Issuing CA</em> field.
+   </p></li><li class="listitem"><p><a name="li_select_the_ca_usage_by_checking_the"></a>
+	Select the CA usage by checking the <em class="guilabel">Certificate signing</em> 
+	and/or the <em class="guilabel">CRL signing</em> check boxes. Selection of at least
+	one option is mandatory.
+   </p></li><li class="listitem"><p>Click on the <em class="guilabel">Key</em> browse button
+	<img src="images/BrowseButton.bmp" align="middle"> to open the <em class="guilabel">Select key</em> window.
+   </p></li><li class="listitem"><p><a name="li_click_on_the_required_key_to_highlight_it_and_click"></a>
+	Click on the required key to highlight it and click
+	<em class="guibutton">OK</em>. The selected key appears in the
+	<em class="guilabel">Key</em> field. This field is mandatory.
+   </p></li><li class="listitem"><p>Select a key algorithm, from those available in the
+	<em class="guilabel">Key algorithm</em> drop-down list, if an RSA key was selected in
+	<a class="xref" href="h1_ca_tasks.html#li_click_on_the_required_key_to_highlight_it_and_click">12</a>.
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title"><a name="RSA_key_alg_restriction"></a>Note</h3>
+	The key algorithm is used to restrict an RSA key to be used only for RSASSA-PSS
+	signatures or only with the selected RSASSA-PSS parameters. The drop-down list
+	contains only those algorithms that matches the specified algorithmOID for the
+	CIS device that holds the selected key, see the device configuration in
+	<code class="filename">cis.conf</code>. The selected algorithm will be set in the
+	<code class="code">subjectPublicKeyInfo</code> field in the issued CA certificate.
+	</div></li><li class="listitem"><p>Select a signature algorithm from those available in the
+	<em class="guilabel">Signature algorithm</em> drop-down list.
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+	The signature algorithm drop-down list contains only those algorithms that
+	matches the key algorithm for the key for the selected issuing CA, i.e.
+	self-signed or the selected CA.
+	</div></li></ol></div><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Warning</h3>
+	if the hashInCis property is set to true and a signAlgorithm or signMechanism is
+	specified for the device that holds the selected CA key, see the device
+	configuration in <code class="filename">cis.conf</code>, the selected signature algorithm
+	must be the same as the algorithm specified for the device in
+	<code class="filename">cis.conf</code>. No warning message is displayed if any other
+	signature algorithm is selected.
+ </div><div class="orderedlist"><a name="continues_1"></a><ol class="orderedlist" start="15" type="1"><li class="listitem"><p><a name="li_click_on_the_2"></a>
+	Click on the <em class="guibutton">+</em> button associated with
+	<em class="guilabel">Distribution rules</em> to open the
+	<em class="guilabel">Select Distribution Rules</em> window if immediate publishing is
+	wanted. To specify delayed publishing skip steps
+	<a class="xref" href="h1_ca_tasks.html#li_click_on_the_2">15</a> and <a class="xref" href="h1_ca_tasks.html#li_select_the_required_distribution_rule_for_the_ca_certificate">16</a>.
+   </p></li><li class="listitem"><p><a name="li_select_the_required_distribution_rule_for_the_ca_certificate"></a>
+	Select the required distribution rule for the CA certificate from the list in
+	the window and click <em class="guibutton">OK</em>. Repeat steps
+	<a class="xref" href="h1_ca_tasks.html#li_click_on_the_2">15</a> and <a class="xref" href="h1_ca_tasks.html#li_select_the_required_distribution_rule_for_the_ca_certificate">16</a> 
+	until all the relevant distribution rules have been entered. The processing
+	order of distribution rules can be changed by selecting the procedure and using
+	the
+	<img src="images/LeftButton.gif" align="middle"> and
+	<img src="images/RightButton.gif" align="middle"> buttons. The distribution rules will be processed in the order selected and then
+	stored in CMDB.
+   </p></li><li class="listitem"><p>Click on the <em class="guilabel">Format</em> browse button
+	<img src="images/BrowseButton.bmp" align="middle"> to open the <em class="guilabel">Select Certificate Format</em> 
+	window.
+   </p></li><li class="listitem"><p>
+	Click on the required format to highlight it and click
+	<em class="guibutton">OK</em>. The selected certificate format appears in the
+	<em class="guilabel">Format</em> field. This field is mandatory.
+       See <a class="xref" href="h2_working_with_multiple_tasks.html#h4_format_selection" title="3.4.1.1.&nbsp;Format Selection">Section&nbsp;3.4.1.1, &#8220;Format Selection&#8221;</a> for more information.
+   </p></li><li class="listitem"><p>
+	Select the required <em class="guilabel">Country</em> attribute from the drop-down
+	list in the certificate attributes section of the
+	<em class="guilabel">Create Authority Request</em> dialog.
+   </p></li><li class="listitem"><p>
+	Enter a new CA name in <em class="guilabel">Common Name</em>. The CA name entered
+	here is the name that will appear in the CA certificate .
+   </p></li><li class="listitem"><p>Enter the <em class="guilabel">Organization</em> and
+	<em class="guilabel">Organizational Unit</em> names.
+	</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+	For customizing the attribute display, please refer to
+	<a class="xref" href="h1_ca_tasks.html#h4_customizing_the_attribute_display" title="6.1.3.1.&nbsp;Customizing the Attribute Display">Section&nbsp;6.1.3.1, &#8220;Customizing the Attribute Display&#8221;</a> for more information.
+	Also, if <em class="guilabel">Subject Information Access</em> attribute is chosen,
+	please refer to <a class="xref" href="h1_ca_tasks.html#h4_subject_information_access" title="6.1.3.2.&nbsp;Subject Information Access">Section&nbsp;6.1.3.2, &#8220;Subject Information Access&#8221;</a> for more
+	information.
+	</div></li><li class="listitem"><p>
+    Click the <em class="guibutton">Ok</em> button and sign the request as 
+    described in <a class="xref" href="h1_signing.html" title="Chapter&nbsp;17.&nbsp;Signing of creation and modification tasks">Chapter&nbsp;17, <i>Signing of creation and modification tasks</i></a>.
+    </p></li></ol></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="h4_customizing_the_attribute_display"></a>6.1.3.1.&nbsp;Customizing the Attribute Display</h4></div></div></div><p>
+	It is possible to customize the set of attributes that are presented in the
+	<em class="guilabel">Create Authority Request</em> dialog.
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Click the browse button
+	<img src="images/BrowseButton.bmp" align="middle"> to the right of the certificate attribute fields. The
+	<em class="guilabel">Fields Chooser</em> dialog box appears.
+    </p></li></ol></div><div class="mediaobject" align="center"><img src="images/FieldsChooser.jpg" align="middle"></div><div class="orderedlist"><ol class="orderedlist" start="2" type="1"><li class="listitem"><p>
+	Select which attributes to present and click
+	<em class="guibutton">OK</em>. The order of the presented fields is fixed. The
+	attributes will be shown in the same order as they are listed in this dialog
+	box.
+    </p></li></ol></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title">Note</h3>
+	The <em class="guilabel">Auto add data fields</em> option is used to present all
+	available fields of an existing certificate. It is not applicable in the
+	<em class="guilabel">Create Authority Request</em> dialog .
+  </div></div><div class="section"><div class="titlepage"><div><div><h4 class="title"><a name="h4_subject_information_access"></a>6.1.3.2.&nbsp;Subject Information Access</h4></div></div></div><p>
+	For information concerning the subject information access extension, please
+	refer to RFC 5280 - Internet X.509 Public Key Infrastructure Certificate and CRL
+	Profile.
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>
+	Click on the <em class="guibutton">+</em> button associated with the
+	<em class="guilabel">Subject Information Access</em> field to open the fields below.
+    </p></li><li class="listitem"><p>Enter the <em class="guilabel">Access method OID</em> to be used.</p></li><li class="listitem"><p>
+	Select either the <em class="guibutton">URI</em> or
+	<em class="guibutton">E-mail</em> option button in the
+	<em class="guilabel">Access Location</em> section and enter the required information.
+    </p></li><li class="listitem"><p>Click <em class="guibutton">Finish</em> button.</p></li><li class="listitem"><p>Click <em class="guibutton">OK</em> button to close the dialog.</p></li></ol></div></div></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="h1_authority_types.html">Prev</a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="h2_modifying_a_ca.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter&nbsp;5.&nbsp;Authority Types&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="ca-admin-guide.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;6.2.&nbsp;Modifying a CA</td></tr></table></div></body></html>

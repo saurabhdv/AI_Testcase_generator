@@ -1,0 +1,223 @@
+==================================================================
+
+    Smart ID Certificate Manager
+    Version 8.13.0
+    Build install_8_13_0-a0c291c2f7d319de9b6756657d87954e9eb1b3f3-20250625T085504Z
+    Date 20250625T085507Z
+    UPGRADE_FROM_CM_8_12_x.txt
+
+==================================================================
+
+                 Content
+
+==================================================================
+
+1.  Installation Considerations
+2.  Upgrading from 8.12.x
+2.1   Database CMDB
+2.2   The Nexus CF, CIS, and SNMP Services
+2.3   The Certificate Manager Clients
+2.4   The CM Protocol Gateway
+2.5   The CM SDK
+2.6   The HTTP CIL Push interface
+
+==================================================================
+
+1.  Installation Considerations
+
+==================================================================
+
+This file describes how to upgrade the CM server and CM client
+tools from CM 8.12.x to CM 8.13.0
+
+==================================================================
+
+2.  Upgrading from 8.12.x
+
+==================================================================
+------------------------------------------------------------------
+2.1   Database CMDB
+------------------------------------------------------------------
+
+The following database script must be executed to upgrade CMDB.
+Use the PostgreSQL or Oracle script for respective database.
+
+1) Upgrade the database by running the following script in the
+   Oracle SQLPlus or PostgreSQL client
+
+    database/CMDBUpgrade_Oracle_8_13_0.sql
+    or
+    database/CMDBUpgrade_PostgreSQL_8_13_0.sql
+
+
+------------------------------------------------------------------
+2.2   The Nexus CF, CIS and SNMP Services
+------------------------------------------------------------------
+
+The following steps must be performed at the server(s) that runs
+any of the "Nexus CF", "Nexus CIS" or "Nexus SNMP"
+services.
+
+NOTE: Make a backup copy of the "<cm-server-home>/config",
+      "<cm-server-home>/lib", "<cm-server-home>/bin" and
+       "<cm-server-home>/deliverynotes" folders
+       before applying any changes.
+
+1) Stop the Nexus CIS, CF and SNMP services.
+
+2) If upgrading from a CM version earlier than 8.11.x, make sure
+   64-bit Java SE 21 is installed and properly configured
+   to be used by CF, CIS and SNMP services. See Installation Guide 3.2.2.
+
+3) Configuration changes. On the server(s) running the "Nexus CF",
+   "Nexus SNMP" and "Nexus CIS" service:
+
+   make the changes in "<cm-server-home>/config/" described in the
+   respective files under the "server" folder.
+
+4) If upgrading from a CM version earlier than 8.11.x, configure
+   java CF to use 21.
+
+    a) On Windows open the Registry Editor.
+       In "HKEY_LOCAL_MACHINE\SOFTWARE\Nexus\Service Parameters\CF".
+       Edit the variable JREPath so it instead points to Java 21
+       home directory.
+
+    b) On Linux, navigate to "<install_root>/bin" and edit the JAVA
+       variable in the cf_launch.conf to point to Java 21.
+
+5) Rename any custom formats files used by CM that has a filename
+   that begins with  the "_" character to something the does not
+   begin with the "_" character. The reason for this is that
+   formats starting with "_" will not be loaded.
+
+6) On the servers running the "Nexus CF", "Nexus CIS" or
+   "Nexus SNMP" service, remove all jar files in
+   "<cm-server-home>/lib" folder.
+
+7) Copy all jar files under
+   "Upgrade files CM 8.13.0/server/lib" to
+   "<cm-server-home>/lib".
+
+8) Replace all files under "<cm-server-home>/tools" folder
+   with the new ones under
+   "Upgrade files CM 8.13.0/server/tools"
+
+9) Copy all files under
+   "Upgrade files CM 8.13.0/server/bin" to
+   "<cm-server-home>/bin", replacing the old ones.
+
+10) Copy all files under
+   "Upgrade files CM 8.13.0/server/deliverynotes" to
+   "<cm-server-home>/deliverynotes", replacing the old ones.
+
+11) If upgrading from a CM version earlier than 8.9.x, the cmservices
+   must be re-installed:
+
+   <install_root>/bin/cmservices remove cf
+   <install_root>/bin/cmservices remove cis
+   <install_root>/bin/cmservices remove cmsnmp
+
+   <install_root>/bin/cmservices install cf cmuser cmuser
+   <install_root>/bin/cmservices install cis cmuser cmuser
+   <install_root>/bin/cmservices install cmsnmp cmuser cmuser
+
+12) Start the Nexus CIS, CF and SNMP services.
+
+------------------------------------------------------------------
+2.3   The Certificate Manager Clients
+------------------------------------------------------------------
+
+Replace CM clients installation.
+
+1) Shut down all the Certificate Manager clients.
+
+2) Make sure Java SE 21 is installed and set as default java on
+   the system. Clients can be run on both 32-bit and 64-bit JDKs with
+   the following limitations:
+
+   - Linux: 64-bit Java is required in order to use clients with Personal.
+   - Windows: After the upgrade, if a javaw.exe binary exists under the
+     C:\Windows\SysWOW64 folder, clients will continue to run on 32-bit
+     Java even if default JDK is 64-bit. Remove this binary (and
+     javaws.exe, java.exe) in order to run the clients on 64-bit Java.
+
+3) Backup the "<cm-client-home>/config" folder.
+
+4) Uninstall "Certificate Manager Clients Components".
+
+   a) On Windows use "Programs and Features" to uninstall
+      "Certificate Manager Clients Components".
+
+   b) On Linux, run "<cm-client-home>/install/setup.sh -u".
+
+5) Remove any remaining hotfix jar files in "<cm-client-home>/lib"
+   folder.
+
+   On Linux, if there is a "<cm-client-home>/P11" folder,
+   backup any config file with customizations to Personal and then
+   delete the folder.
+
+6) Install the new version of the clients.
+
+7) Apply customizations, if any, to the new configuration files in
+   the "<cm-client-home>/config" folder.
+
+Note: The officer role "Use AWB" is now used for read only
+      access to the AWB and no longer has permission to do
+      manual builds of CRLs and CILs. Instead, the role
+      "Manual build of CRL and CIL" is needed to perform
+      manual builds.
+
+      The officer profile that was previously used by the
+      officer that performed manual builds must now be
+      modified to include the role "Manual build of CRL and CIL".
+
+------------------------------------------------------------------
+2.4   The CM Protocol Gateway
+------------------------------------------------------------------
+
+1) Upgrade CM Protocol Gateway according to the section
+   "Upgrading from previous versions" in the Protocol Gateway
+   Documentation.
+
+------------------------------------------------------------------
+2.5   The CM SDK
+------------------------------------------------------------------
+
+Note: The CM SDK is compiled with Java 11 source and target compatibility.
+
+1) Shut down all applications that are using the CM SDK except
+   for CMWS and PGWY.
+
+2) Backup the library folder of the CM SDK application.
+
+3) Remove the CM hotfix jar files in the library folder of the
+   CM SDK application folder that adhere to the following
+   patterns:
+
+    a-*.jar
+    aa*.jar
+
+4) Replace the jar files in the library folder of the CM SDK
+   application with the supplied files in
+   "Upgrade files CM 8.13.0/sdk/lib".
+
+------------------------------------------------------------------
+2.6   The HTTP CIL Push interface
+------------------------------------------------------------------
+
+CM 8.12.0 introduced a breaking change in the compatibility with
+Nexus OCSP Responder in the HTTP CIL Push interface to make it
+compliant with the HTTP standard. This means that if using
+HTTP CIL Push and upgrading to CM 8.12.0 or later, it is required to
+upgrade all OCSP instances that the CM instance is configured to
+push CILs to. The required OCSP version is 6.4.0 or later.
+
+The HTTP response returned from Nexus OCSP responder to indicate
+missing CIL segments has been changed to return status code 204
+instead of status code 111
+
+When upgrading to CM 8.12.0 or later, an indicative log message
+stating that OCSP version is non-compatible is logged to the CF log
+if pushing CILs to OCSP version older than 6.4.0.
