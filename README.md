@@ -9,4 +9,7 @@ Generates test cases with product trained data
 
 for documents in docs forlder creating the vectore can also be aded to azure open ai vector module
 
+run the code to experience AI generated results 
+python rag_client.py
 
+ happy coding ;)
