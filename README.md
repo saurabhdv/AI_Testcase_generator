@@ -1,6 +1,7 @@
 # AI_Testcase_generator
-Generates test cases with product trained data
-# problem Generate test cases that are relevant to my product 
+
+# Generate test cases that are relevant to my product 
+
 ## Tools used 
 # Core Language & Frameworks
 •	  Python: The main programming language used to build and orchestrate the entire RAG pipeline.
